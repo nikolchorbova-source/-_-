@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Добре дошъл</title> <!-- Добре дошъл -->
+
+    <!-- Зареждаме двата шрифта от Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        text-align: center;
+        font-size: 50px;
+        font-family: "Comfortaa", sans-serif;   /* Comfortaa за основния текст */
+        background-color: #f5e6d3; /* нюд фон */
+        color: #a66a2c;            /* карамелен текст */
+      }
+
+      /* Заглавието е с Great Vibes */
+      h1 {
+        font-family: "Great Vibes", cursive;
+        font-size: 80px;
+        margin-bottom: 0.5em;
+      }
+
+      img {
+        width: 220px;
+        height: auto;
+        margin: 10px;
+        border-radius: 8px;
+        transition: transform 0.5s ease, box-shadow 0.34s ease;
+        z-index: 30; /* държи снимката най-отгоре, за да не се скрива */
+      }
+      img:hover {
+        transform: scale(1.8); /* уголемява 1.8 пъти */
+        box-shadow: 0 12px 40px rgba(0,0,0,0.7); /* по-силна сянка*/
+      }
+
+      a {
+        color: #a66a2c;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      button {
+        padding: 12px 24px;
+        font-size: 18px;
+        background: #a66a2c;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-family: "Comfortaa", sans-serif;
+      }
+      button:hover {
+        background: #7d4d1f;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Добре дошъл!</h1>
+    <p>Това е моята първа уеб страница.</p>
+    <a href="https://www.behance.net/e6d141ae">Виж behance</a>
+    <br><br>
+
+    <!-- Снимки една до друга -->
+    <img id="img1" src="images/jazz1.png" alt="Снимка 1">
+    <img id="img2" src="images/logo-aglow.png" alt="Снимка 2">
+    <img id="img3" src="images/sc-logo.png" alt="Снимка 3">
+    <br><br>
+    <button onclick="changeBackground()">Смени фона</button>
+
+    <script>
+      // Фон
+      function changeBackground() {
+        const colors = ["#f5e6d3", "#f9d9b7", "#f3c6aa", "#e0b389"];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.body.style.backgroundColor = randomColor;
+      }
+
+      // Галерия – смяна на снимките при hover
+      const galleries = {
+        img1: [
+          "images/jazz1.png",
+          "images/jazz-mockup.png"
+        ],
+        img2: [
+          "images/logo-aglow.png",
+          "images/mockup-card.png"
+        ],
+        img3: [
+          "images/sc-logo.png",
+          "images/scmockup.png"
+        ]
+      };
+
+      // Добавяме ефект: при hover снимката се сменя
+      Object.keys(galleries).forEach(id => {
+        const img = document.getElementById(id);
+        if (!img) return;
+        const [first, second] = galleries[id];
+
+        img.addEventListener("mouseover", () => {
+          img.src = second; 
+        });
+        img.addEventListener("mouseout", () => {
+          img.src = first; 
+        });
+      });
+    </script>
+  </body>
+</html>
