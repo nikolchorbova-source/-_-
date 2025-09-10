@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="bg">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Добре дошъл</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon1-01.png">
+    <link rel="icon" type="image/png" href="favicon1-01.png" />
 
     <!-- Шрифтове -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       body {
@@ -42,12 +45,13 @@
         border: none;
         border-radius: 20px; /* заоблен квадрат */
         text-decoration: none;
-        transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        transition: background 0.3s ease, transform 0.2s ease,
+          box-shadow 0.2s ease;
       }
       .btn:hover {
         background: #7d4d1f;
         transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       }
 
       /* Контейнер за снимките */
@@ -63,7 +67,7 @@
         width: 250px;
         height: 190px;
         border-radius: 20px;
-        transition: transform 0.5s ease, box-shadow 0.34s ease, opacity 0.4s ease;
+        transition: transform 0.5s ease, box-shadow 0.34s ease;
         position: relative;
         z-index: 1;
       }
@@ -72,7 +76,7 @@
       @media (hover: hover) {
         .gallery img:hover {
           transform: scale(1.8);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
           z-index: 999;
         }
       }
@@ -113,13 +117,19 @@
     <p>Това е моята първа уеб страница.</p>
 
     <!-- Behance бутон -->
-    <a class="btn" href="https://www.behance.net/e6d141ae" target="_blank" rel="noopener">Виж Behance</a>
+    <a
+      class="btn"
+      href="https://www.behance.net/e6d141ae"
+      target="_blank"
+      rel="noopener"
+      >Виж Behance</a
+    >
 
     <!-- Снимки в контейнер -->
     <div class="gallery">
-      <img id="img1" src="jazz1.png" alt="Снимка 1">
-      <img id="img2" src="logo-aglow.png" alt="Снимка 2">
-      <img id="img3" src="sc-logo.png" alt="Снимка 3">
+      <img id="img1" src="jazz1.png" alt="Снимка 1" />
+      <img id="img2" src="logo-aglow.png" alt="Снимка 2" />
+      <img id="img3" src="sc-logo.png" alt="Снимка 3" />
     </div>
 
     <button onclick="changeBackground()">Смени фона</button>
@@ -128,7 +138,8 @@
       // Фон
       function changeBackground() {
         const colors = ["#f5e6d3", "#f9d9b7", "#f3c6aa", "#e0b389"];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const randomColor =
+          colors[Math.floor(Math.random() * colors.length)];
         document.body.style.backgroundColor = randomColor;
       }
 
@@ -136,30 +147,25 @@
       const galleries = {
         img1: ["jazz1.png", "jazz-mockup.png"],
         img2: ["logo-aglow.png", "mockup-card.png"],
-        img3: ["sc-logo.png", "scmockup.png"]
+        img3: ["sc-logo.png", "scmockup.png"],
       };
 
-      Object.keys(galleries).forEach(id => {
+      Object.keys(galleries).forEach((id) => {
         const img = document.getElementById(id);
         if (!img) return;
         const [first, second] = galleries[id];
 
-        // Смяна с плавно избледняване
-        function fadeTo(newSrc) {
-          img.style.opacity = 0;
-          setTimeout(() => {
-            img.src = newSrc;
-            img.style.opacity = 1;
-          }, 300);
-        }
-
         // Компютър: hover
-        img.addEventListener("mouseover", () => { fadeTo(second); });
-        img.addEventListener("mouseout", () => { fadeTo(first); });
+        img.addEventListener("mouseover", () => {
+          img.src = second;
+        });
+        img.addEventListener("mouseout", () => {
+          img.src = first;
+        });
 
-        // Телефон/таблет: клик
+        // Телефон/таблет: при докосване/клик
         img.addEventListener("click", () => {
-          fadeTo(img.src.includes(second) ? first : second);
+          img.src = img.src.includes(second) ? first : second;
         });
       });
     </script>
