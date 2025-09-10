@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="bg">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon1-01.png">
 
-    <!-- Зареждаме двата шрифта от Google Fonts -->
+    <!-- Зареждаме шрифтовете -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
     <style>
       body {
         text-align: center;
-        font-size: 45px;
+        font-size: 40px;
         font-family: "Comfortaa", sans-serif;
         background-color: #f5e6d3;
         color: #a66a2c;
@@ -30,15 +30,24 @@
         margin-bottom: 0.5em;
       }
 
-      img {
-        width: 220px;
-        height: auto;
-        margin: 10px;
+      /* Контейнер за снимките */
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .gallery img {
+        width: 250px;
+        height: 190px;
         border-radius: 8px;
         transition: transform 0.5s ease, box-shadow 0.34s ease;
         z-index: 30;
       }
-      img:hover {
+
+      .gallery img:hover {
         transform: scale(1.8);
         box-shadow: 0 12px 40px rgba(0,0,0,0.7);
       }
@@ -72,8 +81,8 @@
         h1 {
           font-size: 60px;
         }
-        img {
-          width: 90%; /* снимките да се нагодят по екрана */
+        .gallery img {
+          width: 90%; /* снимките да заемат почти целия екран */
         }
         body {
           font-size: 16px;
@@ -85,14 +94,14 @@
     <h1>Добре дошъл!</h1>
     <p>Това е моята първа уеб страница.</p>
     <a href="https://www.behance.net/e6d141ae">Виж behance</a>
-    <br><br>
 
-    <!-- Снимки една до друга -->
-    <img id="img1" src="jazz1.png" alt="Снимка 1">
-    <img id="img2" src="logo-aglow.png" alt="Снимка 2">
-    <img id="img3" src="sc-logo.png" alt="Снимка 3">
+    <!-- Снимки в контейнер -->
+    <div class="gallery">
+      <img id="img1" src="jazz1.png" alt="Снимка 1">
+      <img id="img2" src="logo-aglow.png" alt="Снимка 2">
+      <img id="img3" src="sc-logo.png" alt="Снимка 3">
+    </div>
 
-    <br><br>
     <button onclick="changeBackground()">Смени фона</button>
 
     <script>
