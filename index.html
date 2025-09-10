@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html lang="bg">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добре дошъл</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon1-01.png">
-
-    <!-- Зареждаме шрифтовете -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Great+Vibes&display=swap" rel="stylesheet">
-
-    <style>
-      body {
-        text-align: center;
-        font-size: 40px;
-        font-family: "Comfortaa", sans-serif;
-        background-color: #f5e6d3;
-        color: #a66a2c;
-        margin: 0;
-        padding: 20px;
-      }
-
-      h1 {
-        font-family: "Great Vibes", cursive;
-        font-size: 140px;
-        margin-bottom: 0.5em;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       }
 
       /* Контейнер за снимките */
@@ -42,23 +13,19 @@
       .gallery img {
         width: 250px;
         height: 190px;
-        border-radius: 8px;
-        transition: transform 0.5s ease, box-shadow 0.34s ease;
-        z-index: 30;
+        border-radius: 20px;
+        transition: transform 0.5s ease, box-shadow 0.34s ease, opacity 0.4s ease;
+        position: relative;
+        z-index: 1;
       }
 
-      .gallery img:hover {
-        transform: scale(1.8);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.7);
-      }
-
-      a {
-        color: #a66a2c;
-        text-decoration: none;
-        font-weight: bold;
-      }
-      a:hover {
-        text-decoration: underline;
+      /* Hover ефект само на устройства с мишка */
+      @media (hover: hover) {
+        .gallery img:hover {
+          transform: scale(1.8);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+          z-index: 999;
+        }
       }
 
       button {
@@ -71,6 +38,7 @@
         cursor: pointer;
         margin-top: 20px;
         font-family: "Comfortaa", sans-serif;
+        transition: background 0.3s ease;
       }
       button:hover {
         background: #7d4d1f;
@@ -82,7 +50,8 @@
           font-size: 60px;
         }
         .gallery img {
-          width: 90%; /* снимките да заемат почти целия екран */
+          width: 90%;
+          height: auto;
         }
         body {
           font-size: 16px;
@@ -93,7 +62,9 @@
   <body>
     <h1>Добре дошъл!</h1>
     <p>Това е моята първа уеб страница.</p>
-    <a href="https://www.behance.net/e6d141ae">Виж behance</a>
+
+    <!-- Behance бутон -->
+    <a class="btn" href="https://www.behance.net/e6d141ae" target="_blank" rel="noopener">Виж Behance</a>
 
     <!-- Снимки в контейнер -->
     <div class="gallery">
@@ -112,7 +83,7 @@
         document.body.style.backgroundColor = randomColor;
       }
 
-      // Галерия – смяна на снимките при hover
+      // Галерия – смяна на снимките
       const galleries = {
         img1: ["jazz1.png", "jazz-mockup.png"],
         img2: ["logo-aglow.png", "mockup-card.png"],
@@ -124,8 +95,23 @@
         if (!img) return;
         const [first, second] = galleries[id];
 
-        img.addEventListener("mouseover", () => { img.src = second; });
-        img.addEventListener("mouseout", () => { img.src = first; });
+        // Смяна с плавно избледняване
+        function fadeTo(newSrc) {
+          img.style.opacity = 0;
+          setTimeout(() => {
+            img.src = newSrc;
+            img.style.opacity = 1;
+          }, 300);
+        }
+
+        // Компютър: hover
+        img.addEventListener("mouseover", () => { fadeTo(second); });
+        img.addEventListener("mouseout", () => { fadeTo(first); });
+
+        // Телефон/таблет: клик
+        img.addEventListener("click", () => {
+          fadeTo(img.src.includes(second) ? first : second);
+        });
       });
     </script>
   </body>
